@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Kymer Awon ───────────────────────────────────── */
+@font-face {
+  font-family: 'Kymer Awon';
+  src: url('/fonts/kymerawon-regularsc.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Satoshi (Fontshare) ──────────────────────────── */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,700&display=swap');
+
+/* ─── Variables ────────────────────────────────────── */
+:root {
+  --beige:          #F0E0C7;
+  --copper-dark:    #6B2F1E;
+  --copper-mid:     #934829;
+  --copper-light:   #AF7127;
+  --copper-border:  #9B7A73;
+
+  /* Tipografía */
+  --font-drama: 'Kymer Awon', 'Cormorant Garamond', serif; /* h1 dramático hero */
+  --font-title: 'Satoshi', sans-serif;                     /* h2, h3, nav → 700 */
+  --font-body:  'Satoshi', sans-serif;                     /* párrafos, datos → 300 */
+}
+
+/* ─── Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  background-color: var(--beige);
+  color: var(--copper-dark);
+  overflow-x: hidden;
+}
+
+/* Títulos → Satoshi Bold */
+h2, h3, h4 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Drama → Kymer Awon (aplicado por clase) */
+.font-drama {
+  font-family: var(--font-drama) !important;
+  font-weight: normal;
+}
+
+img { display: block; width: 100%; }
+
+/* ─── Buttons ──────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--copper-mid);
+  color: var(--beige);
+  padding: 0.85rem 2rem;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover { background-color: var(--copper-dark); }
+
+.btn-outline {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--beige);
+  padding: 0.85rem 2rem;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--beige);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn-outline:hover { background-color: var(--beige); color: var(--copper-dark); }
+
+/* ─── Section utilities ────────────────────────────── */
+.section-pad {
+  padding: 6rem 2rem;
+}
+@media (min-width: 1024px) {
+  .section-pad { padding: 8rem 4rem; }
+}
+
+.section-label {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper-light);
+  margin-bottom: 1rem;
+}
+
+/* ─── Nav ──────────────────────────────────────────── */
+header { will-change: transform; }
+
+nav a {
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+

@@ -1,0 +1,104 @@
+---
+// Services.astro
+const services = [
+  {
+    tag: 'Facial',
+    title: 'Rejuvenecimiento y Cuidado Facial',
+    desc:  'Hidratación profunda de labios y ojeras, limpiezas faciales profundas y dermaplaning.',
+    benefit: 'Piel más limpia, luminosa, con textura de porcelana y aspecto fresco.',
+    img: '/imagenes/servicio-facial.jpg',
+  },
+  {
+    tag: 'Protocolos',
+    title: 'Protocolos Avanzados de Reparación',
+    desc:  'Peeling químico, plasma rico en plaquetas y tratamientos para cicatrices atróficas, queloides, acné y estrías.',
+    benefit: 'Reducción de pigmentación, unificación de textura y renovación celular.',
+    img: '/imagenes/servicio-reparacion.jpg',
+  },
+  {
+    tag: 'Corporal',
+    title: 'Armonía y Reducción Corporal',
+    desc:  'Radiofrecuencia dual, tratamientos reductores y aumento de glúteos.',
+    benefit: 'Mayor firmeza, elasticidad, efecto lifting inmediato y remodelación corporal sin tiempo de recuperación.',
+    img: '/imagenes/servicio-corporal.jpg',
+  },
+];
+---
+<section id="servicios" class="section-pad" style="background:#F0E0C7;">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+    <div class="mb-14">
+      <p class="section-label" id="srv-label">Tratamientos</p>
+      <h2 class="text-4xl lg:text-5xl xl:text-6xl" style="color:#6B2F1E; font-family:var(--font-title); font-weight:700;" id="srv-title">
+        Tratamientos diseñados para tu esencia.
+      </h2>
+      <p class="mt-4 text-base lg:text-lg" style="color:#934829; max-width:560px;">
+        Soluciones integrales para rostro y cuerpo con resultados visibles desde la primera sesión.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {services.map((s, i) => (
+        <div class="service-card group flex flex-col transition-colors duration-500 overflow-hidden" style="background:#F0E0C7;">
+          <!-- Image with tag -->
+          <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
+            <img
+              src={s.img}
+              alt={s.title}
+              class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            />
+            <!-- Category tag -->
+            <span
+              class="absolute top-0 left-0 px-3 py-1 text-xs tracking-widest uppercase"
+              style="background:#934829; color:#F0E0C7; font-weight:400;"
+            >{s.tag}</span>
+          </div>
+
+          <!-- Card body -->
+          <div class="flex flex-col flex-1 pt-6 pb-8 px-1 transition-colors duration-500" style="background:inherit;">
+            <h3 class="text-xl lg:text-2xl mb-3 transition-colors duration-300" style="color:#6B2F1E;">{s.title}</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:#934829; font-weight:300;">{s.desc}</p>
+
+            <div class="flex items-start gap-3 mt-auto pt-4" style="border-top: 1px solid #9B7A73;">
+              <!-- Checkmark icon -->
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 mt-0.5">
+                <polyline points="2,8 6,12 14,4" stroke="#AF7127" stroke-width="1.5"/>
+              </svg>
+              <p class="text-xs leading-relaxed" style="color:#6B2F1E; font-style:italic;">{s.benefit}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Closing card -->
+    <div class="mt-12 p-10 lg:p-14 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6" style="border: 1px solid #9B7A73;">
+      <div class="max-w-lg">
+        <p class="text-xs section-label mb-2">¿Tienes dudas?</p>
+        <p class="text-xl lg:text-2xl" style="font-family:'Cormorant Garamond',serif; color:#6B2F1E; font-weight:500;">
+          ¿No sabes qué tratamiento necesitas? Nuestros expertos diseñarán un protocolo a tu medida.
+        </p>
+      </div>
+      <a href="#contacto" class="btn-primary shrink-0">Reservar evaluación gratuita</a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('#srv-label, #srv-title', {
+    y: 22, opacity: 0, duration: 1, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '#servicios', start: 'top 75%' },
+  });
+
+  gsap.from('.service-card', {
+    y: 30, opacity: 0, duration: 0.9, stagger: 0.18, ease: 'power3.out',
+    scrollTrigger: { trigger: '#servicios', start: 'top 65%' },
+  });
+</script>

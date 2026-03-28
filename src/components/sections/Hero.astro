@@ -1,0 +1,63 @@
+---
+// Hero.astro
+---
+<section id="inicio" class="relative w-full h-screen flex items-end overflow-hidden">
+  <!-- Background image -->
+  <div
+    id="hero-bg"
+    class="absolute inset-0 bg-cover bg-center"
+    style="background-image: url('/imagenes/hero.jpg'); transform-origin: center center;"
+  ></div>
+
+  <!-- Overlay -->
+  <div class="absolute inset-0" style="background-color: rgba(107,47,30,0.45);"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-20 lg:pb-28 w-full">
+    <p class="section-label" style="color: #F0E0C7; opacity:0.7;" id="hero-label">Estética &amp; Bienestar</p>
+    <h1
+      id="hero-title"
+      class="font-drama text-5xl lg:text-7xl xl:text-8xl text-left mb-6"
+      style="color:#F0E0C7; line-height:1.05; max-width:820px;"
+    >
+      Renace tu piel,<br/>revive tu esencia.
+    </h1>
+    <p
+      id="hero-sub"
+      class="text-base lg:text-lg mb-10 max-w-xl leading-relaxed"
+      style="color:#F0E0C7; font-weight:300; opacity:0.9;"
+    >
+      En GO Essence combinamos ciencia, estética e innovación para lograr resultados visibles y duraderos. Somos más que una clínica: somos un espacio donde renace tu confianza y tu bienestar integral.
+    </p>
+    <a id="hero-btn" href="#contacto" class="btn-primary">Solicitar evaluación gratuita</a>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 right-8 lg:right-12 z-10 flex flex-col items-center gap-2 opacity-60">
+    <span class="text-xs tracking-widest uppercase" style="color:#F0E0C7; font-size:0.65rem; letter-spacing:0.2em;">Scroll</span>
+    <div class="w-px h-12" style="background:#F0E0C7;"></div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  const bg = document.getElementById('hero-bg');
+  const label = document.getElementById('hero-label');
+  const title = document.getElementById('hero-title');
+  const sub = document.getElementById('hero-sub');
+  const btn = document.getElementById('hero-btn');
+
+  // Background zoom-out
+  gsap.from(bg, { scale: 1.08, duration: 3, ease: 'sine.out', delay: 0.2 });
+
+  // Text entrance
+  gsap.from([label, title, sub, btn], {
+    y: 30,
+    opacity: 0,
+    duration: 1.2,
+    stagger: 0.18,
+    ease: 'power3.out',
+    delay: 0.3,
+  });
+</script>

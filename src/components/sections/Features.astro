@@ -1,0 +1,92 @@
+---
+// Features.astro
+---
+<section id="beneficios" class="section-pad features-section" style="background:#F0E0C7;">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header block -->
+    <div class="max-w-2xl mb-16 lg:mb-20">
+      <p class="section-label" id="feat-label">Nuestro Enfoque</p>
+      <h2 class="text-4xl lg:text-5xl xl:text-6xl mb-5" style="color:#6B2F1E; font-family:var(--font-title); font-weight:700;" id="feat-title">
+        La ciencia del cuidado personalizado.
+      </h2>
+      <p class="text-base lg:text-lg leading-relaxed" style="color:#934829;">
+        Rechazamos los enfoques genéricos. Nuestros protocolos están respaldados por tecnología de vanguardia y diseñados a la medida de tu piel.
+      </p>
+    </div>
+
+    <!-- Feature grid – 3 columns divided by thin vertical lines -->
+    <div class="grid grid-cols-1 lg:grid-cols-3">
+
+      <div class="feature-item py-10 lg:py-0 lg:pr-12">
+        <!-- Icon: Atom/Science -->
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-6">
+          <circle cx="18" cy="18" r="3" stroke="#AF7127" stroke-width="1.5"/>
+          <ellipse cx="18" cy="18" rx="14" ry="6" stroke="#AF7127" stroke-width="1.5"/>
+          <ellipse cx="18" cy="18" rx="14" ry="6" stroke="#AF7127" stroke-width="1.5" transform="rotate(60 18 18)"/>
+          <ellipse cx="18" cy="18" rx="14" ry="6" stroke="#AF7127" stroke-width="1.5" transform="rotate(120 18 18)"/>
+        </svg>
+        <h3 class="text-xl lg:text-2xl mb-3" style="color:#6B2F1E;">Ciencia con propósito</h3>
+        <p class="text-sm lg:text-base leading-relaxed" style="color:#934829; font-weight:300;">
+          Protocolos basados en innovación estética y dermatológica para garantizar resultados seguros y efectivos.
+        </p>
+      </div>
+
+      <div class="feature-item py-10 lg:py-0 lg:px-12" style="border-left: 1px solid #9B7A73;">
+        <!-- Icon: Clipboard personalized -->
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-6">
+          <rect x="9" y="5" width="18" height="24" stroke="#AF7127" stroke-width="1.5"/>
+          <rect x="13" y="2" width="10" height="5" stroke="#AF7127" stroke-width="1.5"/>
+          <line x1="13" y1="14" x2="23" y2="14" stroke="#AF7127" stroke-width="1.5"/>
+          <line x1="13" y1="19" x2="23" y2="19" stroke="#AF7127" stroke-width="1.5"/>
+          <line x1="13" y1="24" x2="18" y2="24" stroke="#AF7127" stroke-width="1.5"/>
+        </svg>
+        <h3 class="text-xl lg:text-2xl mb-3" style="color:#6B2F1E;">Protocolos Personalizados</h3>
+        <p class="text-sm lg:text-base leading-relaxed" style="color:#934829; font-weight:300;">
+          Evaluamos las necesidades únicas de tu piel para tratar de raíz problemas como acné, manchas o flacidez.
+        </p>
+      </div>
+
+      <div class="feature-item py-10 lg:py-0 lg:pl-12" style="border-left: 1px solid #9B7A73;">
+        <!-- Icon: Heart/Care -->
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-6">
+          <path d="M18 30C18 30 6 22.5 6 13.5C6 10.42 8.42 8 11.5 8C13.5 8 15.24 9.04 16.26 10.62L18 13L19.74 10.62C20.76 9.04 22.5 8 24.5 8C27.58 8 30 10.42 30 13.5C30 22.5 18 30 18 30Z" stroke="#AF7127" stroke-width="1.5"/>
+          <path d="M18 16V22M15 19H21" stroke="#AF7127" stroke-width="1.5"/>
+        </svg>
+        <h3 class="text-xl lg:text-2xl mb-3" style="color:#6B2F1E;">Humanidad y Empatía</h3>
+        <p class="text-sm lg:text-base leading-relaxed" style="color:#934829; font-weight:300;">
+          Procedimientos no invasivos en un ambiente limpio y tranquilo, donde priorizamos tu salud celular a largo plazo.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Thin bottom line -->
+    <div class="mt-16" style="border-top: 1px solid #9B7A73;"></div>
+
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('#feat-label, #feat-title', {
+    y: 22,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.12,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.features-section', start: 'top 75%' },
+  });
+
+  gsap.from('.feature-item', {
+    y: 20,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.features-section', start: 'top 70%' },
+  });
+</script>

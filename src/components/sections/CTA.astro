@@ -1,0 +1,142 @@
+---
+// CTA.astro
+---
+<section id="contacto" class="relative section-pad" style="background: linear-gradient(135deg, #6B2F1E 0%, #1a0a06 100%);">
+
+  <!-- Decorative top line -->
+  <div class="absolute top-0 left-0 w-full h-px" style="background: linear-gradient(90deg, transparent, #AF7127, transparent);"></div>
+
+  <div class="max-w-7xl mx-auto lg:grid lg:grid-cols-2 gap-20 items-start">
+
+    <!-- Left: text -->
+    <div>
+      <p class="section-label" style="color:#AF7127;" id="cta-label">Agenda tu cita</p>
+      <h2 class="text-4xl lg:text-5xl xl:text-6xl mb-6" style="color:#F0E0C7; font-family:var(--font-title); font-weight:700;" id="cta-title">
+        Comienza tu transformación hoy.
+      </h2>
+      <p class="text-base lg:text-lg leading-relaxed mb-10" style="color:#F0E0C7; opacity:0.75; max-width:440px;">
+        Agenda una consulta de diagnóstico con nuestros especialistas para desarrollar tu plan de tratamiento personalizado.
+      </p>
+
+      <!-- Info block -->
+      <div class="flex flex-col gap-5">
+        <div class="flex items-center gap-4">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M3 4.5C3 4.5 6.5 3 10 3C13.5 3 17 4.5 17 4.5V15.5C17 15.5 13.5 14 10 14C6.5 14 3 15.5 3 15.5V4.5Z" stroke="#AF7127" stroke-width="1.2"/>
+            <line x1="10" y1="3" x2="10" y2="14" stroke="#AF7127" stroke-width="1.2"/>
+          </svg>
+          <span class="text-sm" style="color:#F0E0C7; opacity:0.8;">Barranquilla, Colombia</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="4" width="14" height="12" stroke="#AF7127" stroke-width="1.2"/>
+            <polyline points="3,4 10,11 17,4" stroke="#AF7127" stroke-width="1.2"/>
+          </svg>
+          <span class="text-sm" style="color:#F0E0C7; opacity:0.8;">@GOESSENCE</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 4C4 4 5 8 8 9L10 7L13 12C10 13 6 10 4 4Z" stroke="#AF7127" stroke-width="1.2"/>
+            <circle cx="14" cy="14" r="3" stroke="#AF7127" stroke-width="1.2"/>
+          </svg>
+          <span class="text-sm" style="color:#F0E0C7; opacity:0.8;">+57 314 713 8877</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div id="cta-form-wrap">
+      <form id="cta-form" class="flex flex-col gap-5 mt-12 lg:mt-0" novalidate>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs tracking-widest uppercase" style="color:#AF7127;">Nombre Completo</label>
+          <input
+            id="f-name" type="text" placeholder="Tu nombre"
+            class="w-full px-4 py-3 text-sm outline-none transition-colors duration-300"
+            style="background:rgba(240,224,199,0.08); border:1px solid rgba(240,224,199,0.25); color:#F0E0C7;"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs tracking-widest uppercase" style="color:#AF7127;">Correo Electrónico</label>
+          <input
+            id="f-email" type="email" placeholder="tu@correo.com"
+            class="w-full px-4 py-3 text-sm outline-none transition-colors duration-300"
+            style="background:rgba(240,224,199,0.08); border:1px solid rgba(240,224,199,0.25); color:#F0E0C7;"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs tracking-widest uppercase" style="color:#AF7127;">Teléfono</label>
+          <input
+            id="f-phone" type="tel" placeholder="+57 300 000 0000"
+            class="w-full px-4 py-3 text-sm outline-none transition-colors duration-300"
+            style="background:rgba(240,224,199,0.08); border:1px solid rgba(240,224,199,0.25); color:#F0E0C7;"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs tracking-widest uppercase" style="color:#AF7127;">Tratamiento de Interés</label>
+          <select
+            id="f-treatment"
+            class="w-full px-4 py-3 text-sm outline-none appearance-none cursor-pointer"
+            style="background:rgba(240,224,199,0.08); border:1px solid rgba(240,224,199,0.25); color:#F0E0C7;"
+          >
+            <option value="" style="background:#6B2F1E;">Selecciona una opción</option>
+            <option value="Facial" style="background:#6B2F1E;">Facial</option>
+            <option value="Corporal" style="background:#6B2F1E;">Corporal</option>
+            <option value="Cicatrices / Acné" style="background:#6B2F1E;">Cicatrices / Acné</option>
+          </select>
+        </div>
+
+        <p class="text-xs mt-1" style="color:#F0E0C7; opacity:0.45; line-height:1.6;">
+          Citas limitadas disponibles para nuevos clientes este mes.
+        </p>
+
+        <button type="submit" class="btn-primary w-full text-center mt-2 flex items-center justify-center gap-3">
+          <!-- WhatsApp icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M20.5 3.5C18.3 1.3 15.3 0 12 0C5.4 0 0 5.4 0 12C0 14.1 0.6 16.1 1.6 17.8L0 24L6.4 22.4C8.1 23.3 10 23.9 12 23.9C18.6 23.9 24 18.5 24 11.9C24 8.7 22.7 5.7 20.5 3.5ZM12 21.9C10.2 21.9 8.4 21.4 6.9 20.5L6.5 20.3L2.8 21.3L3.8 17.7L3.5 17.2C2.5 15.6 1.9 13.8 1.9 11.9C1.9 6.3 6.5 1.8 12 1.8C14.7 1.8 17.1 2.8 18.9 4.6C20.7 6.4 21.8 8.9 21.8 11.9C22 17.5 17.5 21.9 12 21.9ZM17.5 14.4C17.2 14.3 15.7 13.5 15.4 13.4C15.1 13.3 14.9 13.3 14.7 13.5C14.5 13.8 13.9 14.5 13.7 14.7C13.5 14.9 13.3 14.9 13.1 14.8C12.1 14.3 11.2 13.7 10.4 13C9.7 12.3 9.1 11.4 8.6 10.4C8.5 10.2 8.6 10 8.7 9.8C8.9 9.6 9.1 9.4 9.3 9.2C9.4 9.1 9.5 8.9 9.5 8.7C9.5 8.5 8.9 7 8.7 6.4C8.5 5.8 8.2 5.9 8 5.9C7.8 5.9 7.6 5.9 7.4 5.9C7.2 5.9 6.8 6 6.5 6.3C6.2 6.6 5.4 7.4 5.4 8.9C5.4 10.4 6.5 11.8 6.7 12C6.9 12.2 8.6 14.9 11.3 16.2C12 16.5 12.6 16.7 13.1 16.9C13.8 17.1 14.5 17.1 15 17C15.6 16.9 16.7 16.2 17 15.5C17.3 14.7 17.3 14.1 17.2 14C17.1 13.9 16.9 13.9 17.5 14.4Z" fill="#F0E0C7" fill-opacity="0.9"/>
+          </svg>
+          Solicitar mi valoración en WhatsApp
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from(['#cta-label', '#cta-title', '#cta-form-wrap'], {
+    y: 25, opacity: 0, duration: 1, stagger: 0.15, ease: 'power3.out',
+    scrollTrigger: { trigger: '#contacto', start: 'top 75%' },
+  });
+
+  // Input focus effects
+  document.querySelectorAll('#cta-form input, #cta-form select').forEach(el => {
+    el.addEventListener('focus', () => {
+      (el as HTMLElement).style.borderColor = '#AF7127';
+    });
+    el.addEventListener('blur', () => {
+      (el as HTMLElement).style.borderColor = 'rgba(240,224,199,0.25)';
+    });
+  });
+
+  // WhatsApp submit
+  document.getElementById('cta-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name      = (document.getElementById('f-name') as HTMLInputElement)?.value.trim();
+    const email     = (document.getElementById('f-email') as HTMLInputElement)?.value.trim();
+    const phone     = (document.getElementById('f-phone') as HTMLInputElement)?.value.trim();
+    const treatment = (document.getElementById('f-treatment') as HTMLSelectElement)?.value;
+
+    const message = `Hola, mi nombre es ${name}. Estoy interesado/a en el tratamiento ${treatment}. Mi correo es ${email} y mi teléfono es ${phone}. Me gustaría agendar una valoración.`;
+    const url = `https://wa.me/573147138877?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  });
+</script>

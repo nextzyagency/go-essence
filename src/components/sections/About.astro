@@ -1,0 +1,87 @@
+---
+// About.astro
+---
+<section id="nosotros" class="section-pad" style="background:#F0E0C7;">
+  <div class="max-w-7xl mx-auto lg:grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+    <!-- Image column with curtain reveal -->
+    <div class="relative overflow-hidden mb-12 lg:mb-0" style="aspect-ratio: 3/4;">
+      <div
+        id="about-img-reveal"
+        class="absolute inset-0"
+        style="clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);"
+      >
+        <img
+          src="/imagenes/about.jpg"
+          alt="Especialista GO Essence realizando tratamiento"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <!-- Decorative line -->
+      <div class="absolute -bottom-6 -right-6 w-3/4 h-3/4" style="border: 1px solid #AF7127; z-index:-1;"></div>
+    </div>
+
+    <!-- Text column -->
+    <div class="relative">
+      <!-- Lotus watermark -->
+      <svg
+        class="absolute opacity-[0.05] select-none pointer-events-none"
+        style="width:360px; top:-40px; right:-40px;"
+        viewBox="0 0 200 200"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <ellipse cx="100" cy="130" rx="60" ry="80" stroke="#6B2F1E" stroke-width="1.5"/>
+        <ellipse cx="60" cy="110" rx="40" ry="65" stroke="#6B2F1E" stroke-width="1.5" transform="rotate(-30 60 110)"/>
+        <ellipse cx="140" cy="110" rx="40" ry="65" stroke="#6B2F1E" stroke-width="1.5" transform="rotate(30 140 110)"/>
+        <line x1="100" y1="50" x2="100" y2="190" stroke="#6B2F1E" stroke-width="1"/>
+      </svg>
+
+      <p class="section-label" id="about-label">Nuestra Filosofía</p>
+      <h2
+        id="about-title"
+        class="text-4xl lg:text-5xl xl:text-6xl mb-8"
+        style="color:#6B2F1E; font-family:var(--font-title); font-weight:700;"
+      >
+        El equilibrio perfecto entre ciencia y bienestar.
+      </h2>
+      <p class="text-base lg:text-lg leading-loose mb-6" style="color:#934829;">
+        Go Essence nace de la conexión con lo esencial: la piel, la confianza y la energía interior. Entendemos que la verdadera belleza no se crea desde lo superficial, sino a través de un cuidado consciente.
+      </p>
+      <p class="text-base lg:text-lg leading-loose mb-10" style="color:#934829;">
+        Nuestra misión es que cada paciente se sienta escuchado, acompañado y seguro durante su proceso. Combinamos tecnología avanzada con un trato humano y empático, brindando resultados reales que transforman la forma en que te miras y te valoras.
+      </p>
+      <a href="#contacto" class="btn-primary">Conoce nuestro equipo</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Curtain reveal for image
+  gsap.to('#about-img-reveal', {
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+    duration: 1.4,
+    ease: 'power3.inOut',
+    scrollTrigger: {
+      trigger: '#nosotros',
+      start: 'top 70%',
+    },
+  });
+
+  // Text fade in
+  gsap.from(['#about-label', '#about-title'], {
+    y: 25,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.15,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: '#nosotros',
+      start: 'top 70%',
+    },
+  });
+</script>

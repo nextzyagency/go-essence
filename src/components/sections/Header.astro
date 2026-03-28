@@ -1,0 +1,83 @@
+---
+// Header.astro
+---
+<header id="site-header" class="fixed top-0 left-0 w-full z-50" style="background:#F0E0C7;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 h-[72px] flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 no-underline">
+      <span class="font-serif text-2xl tracking-widest" style="font-family:'Cormorant Garamond',serif; color:#6B2F1E; font-weight:600; letter-spacing:0.15em;">
+        GO<span style="color:#AF7127;">ESSENCE</span>
+      </span>
+    </a>
+
+    <!-- Nav links desktop -->
+    <nav class="hidden lg:flex items-center gap-10">
+      {['Inicio','Nosotros','Beneficios','Servicios','Testimonios'].map(item => (
+        <a
+          href={`#${item.toLowerCase()}`}
+          class="text-sm tracking-widest uppercase transition-colors duration-300"
+          style="font-family:'Satoshi','Inter',sans-serif; color:#6B2F1E; font-weight:300; letter-spacing:0.1em;"
+        >{item}</a>
+      ))}
+    </nav>
+
+    <!-- CTA Button -->
+    <a href="#contacto" class="btn-primary hidden lg:inline-block text-xs">Agendar valoración</a>
+
+    <!-- Mobile menu button -->
+    <button id="menu-toggle" class="lg:hidden flex flex-col gap-[5px] p-2" aria-label="Menú">
+      <span class="block w-6 h-[1.5px]" style="background:#6B2F1E;"></span>
+      <span class="block w-6 h-[1.5px]" style="background:#6B2F1E;"></span>
+      <span class="block w-6 h-[1.5px]" style="background:#6B2F1E;"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden px-6 pb-6 pt-2 flex-col gap-5" style="background:#F0E0C7;">
+    {['Inicio','Nosotros','Beneficios','Servicios','Testimonios'].map(item => (
+      <a href={`#${item.toLowerCase()}`} class="block text-sm tracking-widest uppercase" style="color:#6B2F1E; font-weight:300;">{item}</a>
+    ))}
+    <a href="#contacto" class="btn-primary text-center text-xs mt-2">Agendar valoración</a>
+  </div>
+</header>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const header = document.getElementById('site-header');
+  let lastY = 0;
+
+  ScrollTrigger.create({
+    onUpdate: (self) => {
+      const currentY = self.scroll();
+      if (currentY > 80) {
+        if (currentY > lastY) {
+          gsap.to(header, { yPercent: -100, duration: 0.4, ease: 'power2.out' });
+        } else {
+          gsap.to(header, { yPercent: 0, duration: 0.4, ease: 'power2.out' });
+        }
+      } else {
+        gsap.to(header, { yPercent: 0, duration: 0.4, ease: 'power2.out' });
+      }
+      lastY = currentY;
+    }
+  });
+
+  // Mobile menu toggle
+  const btn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    menu?.classList.toggle('flex');
+  });
+
+  // Close mobile on link click
+  menu?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+    });
+  });
+</script>
