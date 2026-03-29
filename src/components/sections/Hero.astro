@@ -1,13 +1,13 @@
 ---
 // Hero.astro
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <section id="inicio" class="relative w-full h-screen flex items-end overflow-hidden">
   <!-- Background image -->
   <div
     id="hero-bg"
     class="absolute inset-0 bg-cover bg-center"
-    style={`background-image: url('${base}imagenes/hero.jpg'); transform-origin: center center;`}
+    style={`background-image: url('${base}/imagenes/hero.jpg'); transform-origin: center center;`}
   ></div>
 
   <!-- Overlay -->
