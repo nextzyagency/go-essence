@@ -1,26 +1,27 @@
 ---
 // Services.astro
+const base = import.meta.env.BASE_URL;
 const services = [
   {
     tag: 'Facial',
     title: 'Rejuvenecimiento y Cuidado Facial',
     desc:  'Hidratación profunda de labios y ojeras, limpiezas faciales profundas y dermaplaning.',
     benefit: 'Piel más limpia, luminosa, con textura de porcelana y aspecto fresco.',
-    img: '/imagenes/servicio-facial.jpg',
+    img: `${base}imagenes/servicio-facial.jpg`,
   },
   {
     tag: 'Protocolos',
     title: 'Protocolos Avanzados de Reparación',
     desc:  'Peeling químico, plasma rico en plaquetas y tratamientos para cicatrices atróficas, queloides, acné y estrías.',
     benefit: 'Reducción de pigmentación, unificación de textura y renovación celular.',
-    img: '/imagenes/servicio-reparacion.jpg',
+    img: `${base}imagenes/servicio-reparacion.jpg`,
   },
   {
     tag: 'Corporal',
     title: 'Armonía y Reducción Corporal',
     desc:  'Radiofrecuencia dual, tratamientos reductores y aumento de glúteos.',
     benefit: 'Mayor firmeza, elasticidad, efecto lifting inmediato y remodelación corporal sin tiempo de recuperación.',
-    img: '/imagenes/servicio-corporal.jpg',
+    img: `${base}imagenes/servicio-corporal.jpg`,
   },
 ];
 ---
