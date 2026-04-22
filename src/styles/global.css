@@ -61,7 +61,9 @@ img { display: block; width: 100%; }
 
 /* ─── Buttons ──────────────────────────────────────── */
 .btn-primary {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--copper-mid);
   color: var(--beige);
   padding: 0.85rem 2rem;
@@ -77,7 +79,9 @@ img { display: block; width: 100%; }
 .btn-primary:hover { background-color: var(--copper-dark); }
 
 .btn-outline {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
   color: var(--beige);
   padding: 0.85rem 2rem;
