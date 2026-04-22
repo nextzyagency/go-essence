@@ -1,0 +1,48 @@
+---
+// History.astro
+import { Image } from 'astro:assets';
+import historiaImg from '../../../assets/imagenes/nosotros/nuestra-historia.JPG';
+---
+<section class="py-24 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row-reverse items-center gap-16">
+    <div class="md:w-1/2 hist-text">
+      <h2 class="text-3xl lg:text-5xl mb-6" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:600;">
+        Nuestra Historia
+      </h2>
+      <div class="space-y-4" style="color:#934829; font-family:'Satoshi','Inter',sans-serif; font-weight:300;">
+        <p>
+          Notamos que el mercado estético en Barranquilla estaba dividido: por un lado, clínicas frías y estrictas; por el otro, centros de spa enfocados solo en aromas y relajación, sin resultados reales en el cuerpo o rostro.
+        </p>
+        <p>
+          GO Essence nació de la necesidad de fusionar estos dos mundos. Queríamos un lugar donde la innovación en aparatología y medicina estética conviviera armónicamente con la empatía, el trato humano y la relajación profunda.
+        </p>
+        <p class="font-medium" style="color:#6B2F1E;">
+          Nos convertimos en el puente entre el bienestar absoluto y la transformación estética efectiva.
+        </p>
+      </div>
+    </div>
+    
+    <!-- Decorative element -->
+    <div class="md:w-1/2 relative hist-deco h-[500px] lg:h-[600px] flex justify-center items-center mt-12 md:mt-0">
+       <div class="w-80 h-80 lg:w-[450px] lg:h-[450px] border-4 absolute z-0 top-4 left-4" style="border-color:#F0E0C7;"></div>
+       <div class="w-80 h-80 lg:w-[450px] lg:h-[450px] border-2 absolute z-0 bottom-4 right-4" style="border-color:#AF7127;"></div>
+       <Image src={historiaImg} alt="Experiencia Spa" class="w-80 h-80 lg:w-[450px] lg:h-[450px] object-cover relative z-10" style="border: 4px solid #DFCEC1;" />
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.hist-text > *', {
+    scrollTrigger: { trigger: '.hist-text', start: 'top 85%' },
+    x: 30, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out'
+  });
+
+  gsap.to('.hist-deco > div', {
+    scrollTrigger: { trigger: '.hist-deco', start: 'top 85%', scrub: true },
+    rotation: 90, duration: 5
+  });
+</script>

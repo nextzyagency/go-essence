@@ -1,0 +1,19 @@
+---
+// contacto.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import ContactForm from '../components/sections/contacto/ContactForm.astro';
+import ContactInfo from '../components/sections/contacto/ContactInfo.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+<Layout
+  title="Agendar Cita | La Mejor Clínica Estética en Barranquilla"
+  description="Reserva tu valoración gratuita en la mejor clínica estética en Barranquilla. Da el primer paso hacia tu transformación física y facial."
+>
+  <Header />
+  <main class="pt-[72px]">
+    <ContactForm />
+    <ContactInfo />
+  </main>
+  <Footer />
+</Layout>

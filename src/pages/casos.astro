@@ -1,0 +1,23 @@
+---
+// casos.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import CasesHero from '../components/sections/casos/CasesHero.astro';
+import CasesList from '../components/sections/casos/CasesList.astro';
+import BeforeAfter from '../components/sections/casos/BeforeAfter.astro';
+import CTA from '../components/sections/CTA.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+<Layout
+  title="Casos Reales: Antes y Después | Clínica Estética en Barranquilla"
+  description="Galería de casos de éxito y transformaciones físicas. Mira los resultados reales de nuestra clínica estética en Barranquilla."
+>
+  <Header />
+  <main class="pt-[72px]">
+    <CasesHero />
+    <CasesList />
+    <BeforeAfter />
+    <CTA />
+  </main>
+  <Footer />
+</Layout>

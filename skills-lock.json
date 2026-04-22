@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "find-keywords": {
+      "source": "calm-north/seojuice-skills",
+      "sourceType": "github",
+      "computedHash": "ec75ec0ddd56ec0e3ec8ca9fc608d1999dfa73d00dc47ad0d3c0e6754df2996c"
+    },
+    "programmatic-seo": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "c6384f24bb0203f8aa98b23b55d35b9e6721b94532a0e7965215c340ae96f1e0"
+    },
+    "seo": {
+      "source": "Bhanunamikaze/Agentic-SEO-Skill",
+      "sourceType": "github",
+      "computedHash": "08f61aa0b1d0283a77e474cd6c47400ca2a5eb16d661e7b617b4b95f265847af"
+    },
+    "seo-audit": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "2e91c1a968d435712d1deb3845a35021842c168f132f81027c071ad43f78cb0a"
+    }
+  }
+}

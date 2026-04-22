@@ -1,0 +1,54 @@
+---
+// Benefits.astro
+import { Image } from 'astro:assets';
+import limpiezaImg from '../../../assets/imagenes/servicios/limpieza.jpg';
+
+const benefits = [
+  { item: "Pérdida de medidas corporales y contorno de figura sin cirugía médica." },
+  { item: "Reducción visible de líneas de expresión y regeneración celular facial profunda." },
+  { item: "Eliminación y atenuación de celulitis, estrías o flacidez post-parto/pérdida de peso." },
+  { item: "Tratamiento intensivo para imperfecciones estéticas (manchas, acné, exceso de sebo)." }
+];
+---
+<section class="py-24" style="background:#6B2F1E;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row gap-16 items-center">
+    <div class="md:w-1/2 overflow-hidden relative ben-image-container" style="height: 550px;">
+      <div class="absolute inset-0 bg-[#AF7127]/20 z-10 transition-opacity hover:opacity-0 duration-500"></div>
+      <Image src={limpiezaImg} alt="Resultados estéticos faciales" class="w-full h-full object-cover object-center ben-image"/>
+    </div>
+    
+    <div class="md:w-1/2 ben-text">
+      <h2 class="text-4xl lg:text-5xl mb-8" style="color:#F0E0C7; font-family:'Cormorant Garamond',serif; font-weight:600;">
+        Beneficios que transforman
+      </h2>
+      <ul class="space-y-6">
+        {benefits.map(b => (
+          <li class="flex items-start gap-4">
+            <span class="mt-1 min-w-[24px]" style="color:#AF7127;">
+              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M20 6L9 17l-5-5"></path></svg>
+            </span>
+            <span class="text-lg" style="color:#FDFBF7; font-weight:300; font-family:'Satoshi','Inter',sans-serif;">
+              {b.item}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.ben-text > *', {
+    scrollTrigger: { trigger: '.ben-text', start: 'top 85%' },
+    x: 30, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out'
+  });
+  
+  gsap.from('.ben-image', {
+    scrollTrigger: { trigger: '.ben-image-container', start: 'top 85%' },
+    scale: 1.1, duration: 1.5, ease: 'power2.out'
+  });
+</script>

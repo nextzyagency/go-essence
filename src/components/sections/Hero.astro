@@ -1,13 +1,18 @@
 ---
 // Hero.astro
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+import { getImage } from 'astro:assets';
+import heroImgSrc from '../../assets/imagenes/home/hero.JPG';
+
+const optimizedHero = await getImage({ src: heroImgSrc, format: 'webp' });
 ---
 <section id="inicio" class="relative w-full h-screen flex items-end overflow-hidden">
   <!-- Background image -->
   <div
     id="hero-bg"
+    role="img"
+    aria-label="Instalaciones y equipo de la Clínica Estética en Barranquilla GO Essence"
     class="absolute inset-0 bg-cover bg-center"
-    style={`background-image: url('${base}/imagenes/hero.jpg'); transform-origin: center center;`}
+    style={`background-image: url('${optimizedHero.src}'); transform-origin: center center;`}
   ></div>
 
   <!-- Overlay -->
@@ -15,20 +20,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   <!-- Content -->
   <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-20 lg:pb-28 w-full">
-    <p class="section-label" style="color: #F0E0C7; opacity:0.7;" id="hero-label">Estética &amp; Bienestar</p>
+    <p class="section-label" style="color: #F0E0C7; opacity:0.7;" id="hero-label">La mejor Estética en Barranquilla</p>
     <h1
       id="hero-title"
       class="font-drama text-5xl lg:text-7xl xl:text-8xl text-left mb-6"
       style="color:#F0E0C7; line-height:1.05; max-width:820px;"
     >
-      Renace tu piel,<br/>revive tu esencia.
+      Transforma tu apariencia, revive tu esencia.
     </h1>
     <p
       id="hero-sub"
       class="text-base lg:text-lg mb-10 max-w-xl leading-relaxed"
       style="color:#F0E0C7; font-weight:300; opacity:0.9;"
     >
-      En GO Essence combinamos ciencia, estética e innovación para lograr resultados visibles y duraderos. Somos más que una clínica: somos un espacio donde renace tu confianza y tu bienestar integral.
+      Tu referente de estética en Barranquilla. Estamos dedicados a brindarte recambios reales a través de tratamientos corporales y faciales avanzados que moldean tu figura y rejuvenecen tu rostro.
     </p>
     <a id="hero-btn" href="#contacto" class="btn-primary">Solicitar evaluación gratuita</a>
   </div>

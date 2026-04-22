@@ -1,0 +1,63 @@
+---
+// Faq.astro
+const faqs = [
+  {
+    "q": "¿Cuáles son los mejores tratamientos estéticos en Barranquilla para rejuvenecimiento?",
+    "a": "En GO Essence ofrecemos protocolos avanzados faciales y corporales, diseñados para lograr un rejuvenecimiento visible sin cirugía, cuidando la salud de tu piel."
+  },
+  {
+    "q": "¿Qué beneficios tiene hidratar la piel después de un protocolo avanzado?",
+    "a": "La correcta hidratación prolonga los resultados, mejora la elasticidad y previene el envejecimiento prematuro. Utilizamos activos y tecnología para que tu piel luzca radiante por más tiempo."
+  },
+  {
+    "q": "¿Es seguro realizarse tratamientos corporales en GO Essence?",
+    "a": "Absolutamente. Nuestros especialistas utilizan equipos de vanguardia estricto control de higiene para asegurar que todos nuestros procedimientos estéticos sean seguros, indoloros y efectivos."
+  }
+];
+---
+<section id="faq" class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl mb-6 tracking-widest uppercase" style="font-family:'Cormorant Garamond',serif; color:#6B2F1E;">
+        Preguntas Frecuentes
+      </h2>
+      <p class="text-sm md:text-base leading-relaxed max-w-2xl mx-auto" style="color:#6B2F1E; font-weight:300;">
+        Resuelve tus dudas sobre los protocolos y tratamientos en nuestro spa estético.
+      </p>
+    </div>
+    
+    <div class="faq-container flex flex-col gap-6">
+      {faqs.map((faq, index) => (
+        <details class="group bg-[#F0E0C7]/20 border border-[#F0E0C7] rounded-lg p-6 faq-box cursor-pointer hover:bg-[#F0E0C7]/40 transition-colors duration-300">
+          <summary class="flex justify-between items-center font-medium list-none text-lg md:text-xl" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif;">
+            {faq.q}
+            <span class="transition-transform group-open:-rotate-180 text-[#AF7127]">
+              <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+            </span>
+          </summary>
+          <div class="text-[#6B2F1E] mt-4 font-light text-sm md:text-base leading-relaxed" style="font-family:'Satoshi','Inter',sans-serif;">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.faq-box', {
+    scrollTrigger: {
+      trigger: '.faq-container',
+      start: 'top 85%'
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: 'power2.out'
+  });
+</script>

@@ -1,0 +1,55 @@
+---
+// ContactForm.astro
+---
+<section class="py-24 bg-[#F0E0C7]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
+    
+    <div class="contact-text">
+      <p class="text-sm tracking-widest uppercase mb-4" style="color:#AF7127;">Reserva tu Cita</p>
+      <h1 class="text-4xl lg:text-6xl mb-6 leading-tight" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:700;">
+        Da el primer paso hacia una piel radiante.
+      </h1>
+      <p class="text-lg lg:text-xl font-light mb-8" style="color:#934829;">
+        Déjanos tus datos para agendar una valoración especializada. Nuestro equipo te contactará para encontrar el mejor horario para ti.
+      </p>
+    </div>
+
+    <div class="contact-form bg-white p-8 lg:p-12 shadow-sm rounded-sm">
+      <form action="#" method="POST" class="space-y-6">
+        <div>
+          <label for="name" class="block text-sm font-medium mb-2" style="color:#6B2F1E;">Nombre Completo</label>
+          <input type="text" id="name" name="name" required class="w-full border-b border-[#DFCEC1] bg-transparent py-2 focus:outline-none focus:border-[#AF7127] transition-colors" placeholder="Ej. Ana Pérez">
+        </div>
+        
+        <div class="grid grid-cols-2 gap-6">
+          <div>
+            <label for="phone" class="block text-sm font-medium mb-2" style="color:#6B2F1E;">Teléfono / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" required class="w-full border-b border-[#DFCEC1] bg-transparent py-2 focus:outline-none focus:border-[#AF7127] transition-colors" placeholder="Tu número">
+          </div>
+          <div>
+            <label for="service" class="block text-sm font-medium mb-2" style="color:#6B2F1E;">Motivo de Consulta</label>
+            <select id="service" name="service" class="w-full border-b border-[#DFCEC1] bg-transparent py-2 focus:outline-none focus:border-[#AF7127] transition-colors" style="color:#934829;">
+              <option value="Limpieza">Limpieza Facial</option>
+              <option value="Rejuvenecimiento">Rejuvenecimiento</option>
+              <option value="Acné">Control Acné</option>
+              <option value="Corporal">Tratamiento Corporal</option>
+              <option value="Otro">Otro/No estoy segura</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-4 mt-6 uppercase tracking-widest text-sm font-medium text-white transition hover:bg-[#6B2F1E]/90 btn-submit" style="background:#6B2F1E;">
+          Solicitar Valoración
+        </button>
+      </form>
+      <p class="text-xs text-center mt-4" style="color:#AF7127;">*Tus datos están protegidos. Sin fricción ni correos no deseados.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  
+  gsap.from('.contact-text > *', { y: 20, opacity: 0, duration: 1, stagger: 0.15, ease: 'power2.out' });
+  gsap.from('.contact-form', { x: 30, opacity: 0, duration: 1, ease: 'power2.out', delay: 0.3 });
+</script>

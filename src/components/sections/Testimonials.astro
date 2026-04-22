@@ -1,21 +1,9 @@
 ---
 // Testimonials.astro
-const testimonials = [
-  {
-    quote: '"La tecnología que usan es de otro nivel. Me hice el rejuvenecimiento facial y los cambios en la textura de mi piel son impresionantes desde la primera sesión."',
-    name: 'Elena V.',
-    treatment: 'Rejuvenecimiento Facial',
-  },
-  {
-    quote: '"Lo que más me gusta es el trato. No te sientes como un número más, analizan tu piel con cuidado y te explican cada paso del protocolo personalizado para el acné."',
-    name: 'Carla M.',
-    treatment: 'Protocolo Anti-Acné',
-  },
-  {
-    quote: '"Había probado muchos peeling pero ninguno tan efectivo como el de GO Essence. Mis manchas desaparecieron y mi piel ahora brilla de verdad."',
-    name: 'Sandra R.',
-    treatment: 'Peeling Químico',
-  },
+const instagramPosts = [
+  "https://www.instagram.com/p/DW1mhcOERJQ/embed/?theme=dark",
+  "https://www.instagram.com/p/DWzEnbUkXzu/embed/?theme=dark",
+  "https://www.instagram.com/p/DWJ6s07AO7T/embed/?theme=dark"
 ];
 ---
 <section id="testimonios" class="section-pad overflow-hidden" style="background:#6B2F1E;">
@@ -46,23 +34,18 @@ const testimonials = [
 
     <!-- Testimonial cards track -->
     <div id="test-track" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {testimonials.map((t, i) => (
-        <div class="testimonial-card p-8" style="border: 1px solid rgba(240,224,199,0.2);">
-          <!-- Stars -->
-          <div class="flex gap-1 mb-5">
-            {Array(5).fill(null).map(() => (
-              <svg width="14" height="14" viewBox="0 0 18 18">
-                <polygon points="9,2 11,7 17,7 12,11 14,17 9,13 4,17 6,11 1,7 7,7" fill="#AF7127"/>
-              </svg>
-            ))}
-          </div>
-          <p class="text-base lg:text-lg leading-relaxed mb-8" style="color:#F0E0C7; font-style:italic; font-weight:300;">
-            {t.quote}
-          </p>
-          <div style="border-top: 1px solid rgba(240,224,199,0.2);" class="pt-5">
-            <p class="text-sm font-medium" style="color:#F0E0C7;">{t.name}</p>
-            <p class="text-xs mt-1" style="color:#AF7127; letter-spacing:0.1em; text-transform:uppercase;">{t.treatment}</p>
-          </div>
+      {instagramPosts.map((url, i) => (
+        <div class="testimonial-card flex justify-center w-full" style="border: 1px solid rgba(240,224,199,0.2); padding: 1rem;">
+          <iframe 
+            src={url} 
+            width="100%" 
+            height="550" 
+            frameborder="0" 
+            scrolling="no" 
+            allowtransparency="true"
+            class="w-full h-[550px]"
+            title={`Testimonio en video ${i + 1}`}
+          ></iframe>
         </div>
       ))}
     </div>

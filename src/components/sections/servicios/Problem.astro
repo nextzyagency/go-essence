@@ -1,0 +1,54 @@
+---
+// Problem.astro
+import { Image } from 'astro:assets';
+import problemaImg from '../../../assets/imagenes/servicios/El problema.JPG';
+---
+<section class="py-24" style="background:#F0E0C7;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Text content -->
+      <div class="problem-text">
+        <p class="section-label mb-4">El Problema</p>
+        <h2 class="text-4xl lg:text-5xl mb-6 leading-tight" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:700;">
+          ¿Sientes que deseas obtener una mejora visible en tu aspecto físico?
+        </h2>
+        <div class="space-y-4 text-lg" style="color:#934829; font-family:'Satoshi','Inter',sans-serif; font-weight:300;">
+          <p>
+            El ritmo de vida actual, el cansancio y los factores ambientales deterioran nuestra estética global, afectando tanto el rostro como nuestro cuerpo.
+          </p>
+          <p>
+            Con el tiempo, esto se traduce en <strong>flacidez, medidas corporales rebeldes, arrugas o zonas opacas</strong> que no reflejan la energía de cómo te sientes por dentro.
+          </p>
+          <p class="font-medium mt-6 text-[#AF7127]">
+            Ignorar estas señales no solo acelera el daño celular, sino que afecta la confianza en tu propia imagen.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Image/Visual -->
+      <div class="problem-image overflow-hidden" style="border: 1px solid #9B7A73; height: 500px">
+        <Image 
+          src={problemaImg} 
+          alt="Problemas comunes de la piel" 
+          class="w-full h-full object-cover object-center scale-105 hover:scale-100 transition-transform duration-700" 
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.problem-text > *', {
+    scrollTrigger: { trigger: '.problem-text', start: 'top 80%' },
+    y: 30, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out'
+  });
+  
+  gsap.from('.problem-image', {
+    scrollTrigger: { trigger: '.problem-text', start: 'top 80%' },
+    scale: 0.95, opacity: 0, duration: 1, ease: 'power2.out'
+  });
+</script>

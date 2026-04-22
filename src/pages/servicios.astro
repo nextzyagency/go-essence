@@ -1,0 +1,21 @@
+---
+// servicios.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import Problem from '../components/sections/servicios/Problem.astro';
+import ServiceList from '../components/sections/servicios/ServiceList.astro';
+import CTA from '../components/sections/CTA.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+<Layout
+  title="Tratamientos Corporales y Faciales | Estética en Barranquilla"
+  description="Conoce nuestros tratamientos de medicina y estética corporal en Barranquilla. Resultados visibles con la mejor aparatología. Agenda hoy."
+>
+  <Header />
+  <main class="pt-[72px]"> <!-- Header offset -->
+    <Problem />
+    <ServiceList />
+    <CTA />
+  </main>
+  <Footer />
+</Layout>

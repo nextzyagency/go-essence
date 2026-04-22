@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/sections/Header.astro';
+import CTA from '../../components/sections/CTA.astro';
+import Footer from '../../components/sections/Footer.astro';
+import { servicesData } from '../../data/servicesData.js';
+
+export async function getStaticPaths() {
+  return servicesData.map(service => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+---
+<Layout
+  title={`${service.title} | GO Essence Barranquilla`}
+  description={service.shortDesc}
+>
+  <Header />
+
+  <main class="pt-[72px]">
+    <!-- Hero / Image Detail Section -->
+    <section class="relative w-full min-h-[75vh] py-32 flex items-center justify-center overflow-hidden">
+      <!-- Background Image -->
+      <div 
+        class="absolute inset-0 bg-cover bg-center"
+        style={`background-image: url('${service.image.src}');`}
+      ></div>
+      <!-- Overlay -->
+      <div class="absolute inset-0" style="background-color: rgba(107,47,30,0.6);"></div>
+      
+      <!-- Text content -->
+      <div class="relative z-10 text-center px-6 max-w-4xl mx-auto srv-hero">
+        <p class="text-xs uppercase tracking-widest mb-4" style="color: #F0E0C7; font-weight:600;">Detalles del Tratamiento</p>
+        <h1 class="font-drama text-5xl lg:text-7xl mb-6" style="color:#F0E0C7; line-height:1.1;">
+          {service.title}
+        </h1>
+        <p class="text-lg lg:text-2xl" style="color:#F0E0C7; font-weight:300; opacity:0.9;">
+          {service.shortDesc}
+        </p>
+      </div>
+    </section>
+
+    <!-- Detail Content Section -->
+    <section class="py-24" style="background:#F0E0C7;">
+      <div class="max-w-4xl mx-auto px-6 lg:px-12 srv-content">
+        
+        <div class="mb-16">
+          <h2 class="text-3xl lg:text-4xl mb-6" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:700;">
+            ¿En qué consiste?
+          </h2>
+          <p class="text-lg leading-relaxed" style="color:#934829; font-weight:300;">
+            {service.detailedDesc}
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-3xl lg:text-4xl mb-6" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:700;">
+            Principales Beneficios
+          </h2>
+          <ul class="space-y-4">
+            {service.benefits.map((beneficio: string) => (
+              <li class="flex items-start gap-4">
+                <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-1" style="background:#AF7127; color:#F0E0C7;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span class="text-xl" style="color:#6B2F1E; font-weight:300;">{beneficio}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <CTA />
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero animation
+  gsap.from('.srv-hero > *', {
+    y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: 'power2.out', delay: 0.2
+  });
+
+  // Content animation
+  gsap.from('.srv-content > div', {
+    scrollTrigger: { trigger: '.srv-content', start: 'top 80%' },
+    y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: 'power3.out'
+  });
+</script>

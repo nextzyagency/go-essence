@@ -1,0 +1,46 @@
+---
+// Process.astro
+const steps = [
+  { step: "01", title: "Valoración Clínica Integral", desc: "Análisis exhaustivo de tu fisionomía, composición corporal o necesidades dérmicas antes de iniciar." },
+  { step: "02", title: "Diseño del Tratamiento", desc: "Creamos un plan personalizado, combinando la mejor aparatología estética y activos inyectables / tópicos." },
+  { step: "03", title: "Aplicación y Seguimiento", desc: "Realizamos las sesiones con acompañamiento fotográfico asegurando resultados visibles progresivos." }
+];
+---
+<section class="py-24 bg-white relative">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <p class="section-label mb-4">Metodología</p>
+      <h2 class="text-4xl lg:text-5xl mb-6 leading-tight" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:700;">
+        Tu camino hacia una piel radiante.
+      </h2>
+    </div>
+
+    <div class="relative wrap-process">
+      <!-- Desktop line connector -->
+      <div class="hidden lg:block absolute top-[40px] left-[15%] right-[15%] h-[1px] bg-[#F0E0C7] z-0"></div>
+      
+      <div class="grid lg:grid-cols-3 gap-12 lg:gap-8 relative z-10 process-cards">
+        {steps.map(s => (
+          <div class="flex flex-col items-center text-center">
+            <div class="w-20 h-20 bg-[#F0E0C7] rounded-full flex items-center justify-center mb-6 shadow-sm shadow-[#AF7127]/20">
+              <span class="text-2xl" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:600;">{s.step}</span>
+            </div>
+            <h3 class="text-xl mb-3" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:600;">{s.title}</h3>
+            <p class="text-sm max-w-[280px]" style="color:#934829; font-weight:300;">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.process-cards > div', {
+    scrollTrigger: { trigger: '.wrap-process', start: 'top 80%' },
+    y: 30, opacity: 0, duration: 0.6, stagger: 0.2, ease: 'power2.out'
+  });
+</script>

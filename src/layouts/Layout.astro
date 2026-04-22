@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   title?: string;
@@ -19,6 +20,33 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "name": "GO Essence Clínica y Spa",
+        "image": "https://www.goessence.com/imagenes/hero.jpg",
+        "@id": "https://www.goessence.com/#organization",
+        "url": "https://www.goessence.com",
+        "telephone": "+573147138877",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Barranquilla",
+          "addressLocality": "Barranquilla",
+          "addressRegion": "ATL",
+          "postalCode": "080001",
+          "addressCountry": "CO"
+        },
+        "description": "Clínica estética integral en Barranquilla dedicada a brindarte resultados visibles. Tratamientos corporales, faciales, y SPA.",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      }
+    </script>
+    <ClientRouter />
   </head>
   <body>
     <slot />

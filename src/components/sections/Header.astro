@@ -1,5 +1,11 @@
 ---
 // Header.astro
+const navItems = [
+  { label: 'Inicio', path: '/' },
+  { label: 'Nosotros', path: '/nosotros' },
+  { label: 'Servicios', path: '/servicios' },
+  { label: 'Casos Reales', path: '/casos' }
+];
 ---
 <header id="site-header" class="fixed top-0 left-0 w-full z-50" style="background:#F0E0C7;">
   <div class="max-w-7xl mx-auto px-6 lg:px-12 h-[72px] flex items-center justify-between">
@@ -12,17 +18,17 @@
 
     <!-- Nav links desktop -->
     <nav class="hidden lg:flex items-center gap-10">
-      {['Inicio','Nosotros','Beneficios','Servicios','Testimonios'].map(item => (
+      {navItems.map(item => (
         <a
-          href={`#${item.toLowerCase()}`}
+          href={item.path}
           class="text-sm tracking-widest uppercase transition-colors duration-300"
           style="font-family:'Satoshi','Inter',sans-serif; color:#6B2F1E; font-weight:300; letter-spacing:0.1em;"
-        >{item}</a>
+        >{item.label}</a>
       ))}
     </nav>
 
     <!-- CTA Button -->
-    <a href="#contacto" class="btn-primary hidden lg:inline-block text-xs">Agendar valoración</a>
+    <a href="/contacto" class="btn-primary hidden lg:inline-block text-xs">Agendar valoración</a>
 
     <!-- Mobile menu button -->
     <button id="menu-toggle" class="lg:hidden flex flex-col gap-[5px] p-2" aria-label="Menú">
@@ -34,10 +40,10 @@
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="hidden lg:hidden px-6 pb-6 pt-2 flex-col gap-5" style="background:#F0E0C7;">
-    {['Inicio','Nosotros','Beneficios','Servicios','Testimonios'].map(item => (
-      <a href={`#${item.toLowerCase()}`} class="block text-sm tracking-widest uppercase" style="color:#6B2F1E; font-weight:300;">{item}</a>
+    {navItems.map(item => (
+      <a href={item.path} class="block text-sm tracking-widest uppercase" style="color:#6B2F1E; font-weight:300;">{item.label}</a>
     ))}
-    <a href="#contacto" class="btn-primary text-center text-xs mt-2">Agendar valoración</a>
+    <a href="/contacto" class="btn-primary text-center text-xs mt-2">Agendar valoración</a>
   </div>
 </header>
 

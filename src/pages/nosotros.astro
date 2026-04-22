@@ -1,0 +1,24 @@
+---
+// nosotros.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/sections/Header.astro";
+import Positioning from "../components/sections/nosotros/Positioning.astro";
+import History from "../components/sections/nosotros/History.astro";
+import Proof from "../components/sections/nosotros/Proof.astro";
+import CTA from "../components/sections/CTA.astro";
+import Footer from "../components/sections/Footer.astro";
+---
+
+<Layout
+  title="Sobre Nosotros | Clínica Estética en Barranquilla"
+  description="Descubre la trayectoria de nuestro equipo. Somos el puente entre relajación absoluta y una efectiva clínica estética en Barranquilla diseñando protocolos faciales y corporales."
+>
+  <Header />
+  <main class="pt-[72px]">
+    <Positioning />
+    <History />
+    <Proof />
+    <CTA />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,38 @@
+---
+// Proof.astro
+---
+<section class="py-24 bg-white text-center">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <h2 class="text-3xl lg:text-5xl mb-12" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:600;">
+      Más de 500 pacientes confían en nuestra experiencia
+    </h2>
+    <p class="max-w-2xl mx-auto mb-16" style="color:#934829;">Respaldados por certificaciones estéticas y el aval de clientes satisfechos que han transformado su calidad de vida a través de la salud de su piel.</p>
+    
+    <div class="flex flex-wrap justify-center gap-12 lg:gap-24 opacity-60">
+      <!-- Logos o sellos figurativos -->
+      <div class="flex flex-col items-center proof-item">
+        <span class="text-4xl font-bold" style="color:#6B2F1E;">500+</span>
+        <span class="text-sm tracking-widest uppercase mt-2">Casos de Éxito</span>
+      </div>
+      <div class="flex flex-col items-center proof-item">
+        <span class="text-4xl font-bold" style="color:#6B2F1E;">#1</span>
+        <span class="text-sm tracking-widest uppercase mt-2">En protocolos de acné</span>
+      </div>
+      <div class="flex flex-col items-center proof-item">
+        <span class="text-4xl font-bold" style="color:#6B2F1E;">100%</span>
+        <span class="text-sm tracking-widest uppercase mt-2">Profesionales Especializados</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.proof-item', {
+    scrollTrigger: { trigger: '.proof-item', start: 'top 90%' },
+    scale: 0.8, opacity: 0, duration: 1, stagger: 0.2, ease: 'back.out(1.7)'
+  });
+</script>

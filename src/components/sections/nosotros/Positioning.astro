@@ -1,0 +1,30 @@
+---
+// Positioning.astro
+import { Image } from 'astro:assets';
+import heroNosotrosImg from '../../../assets/imagenes/nosotros/hero-nosotros.JPG';
+---
+<section class="py-24" style="background:#F0E0C7;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center gap-16">
+    <div class="md:w-1/2 pt-12 md:pt-0 pos-text">
+      <p class="text-sm font-medium tracking-widest uppercase mb-4" style="color:#AF7127;">Propuesta de Valor</p>
+      <h1 class="text-4xl lg:text-6xl mb-6 leading-tight uppercase tracking-widest" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:700;">
+        Estética y Spa con Propósito.
+      </h1>
+      <p class="text-lg lg:text-xl mb-8 leading-relaxed" style="color:#934829; font-family:'Satoshi','Inter',sans-serif; font-weight:300;">
+        Creamos <strong>GO Essence</strong> para personas que exigen más que un momento de relajación. Diseñamos protocolos de medicina estética orientados a transformaciones reales, para quienes valoran la ciencia aplicada al cuidado integral corporal y facial.
+      </p>
+      <p class="font-medium text-lg" style="color:#6B2F1E;">
+        El resultado: Una figura armónica, un rostro rejuvenecido y confianza absoluta en tu propia imagen.
+      </p>
+    </div>
+    <div class="md:w-1/2 w-full h-[500px] border pos-image" style="border-color:#9B7A73; background:#FDFBF7;">
+      <Image src={heroNosotrosImg} alt="Posicionamiento GO Essence" class="w-full h-full object-cover object-center" />
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  gsap.from('.pos-text > *', { y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: 'power2.out', delay: 0.2 });
+  gsap.from('.pos-image', { x: 30, opacity: 0, duration: 1, ease: 'power2.out', delay: 0.4 });
+</script>

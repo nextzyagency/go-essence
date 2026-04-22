@@ -1,27 +1,31 @@
 ---
 // Services.astro
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+import { Image } from 'astro:assets';
+import facialImg from '../../assets/imagenes/home/facial.JPG';
+import reparacionImg from '../../assets/imagenes/home/protocolos-avanzados.JPG';
+import corporalImg from '../../assets/imagenes/home/corporal.JPG';
+
 const services = [
   {
-    tag: 'Facial',
-    title: 'Rejuvenecimiento y Cuidado Facial',
-    desc:  'Hidratación profunda de labios y ojeras, limpiezas faciales profundas y dermaplaning.',
-    benefit: 'Piel más limpia, luminosa, con textura de porcelana y aspecto fresco.',
-    img: `${base}/imagenes/servicio-facial.jpg`,
+    tag: 'Estética Facial',
+    title: 'Transformación y Rejuvenecimiento',
+    desc:  'Recupera volumen y luminosidad con tratamientos diseñados para combatir el envejecimiento prematuro y armonizar tu rostro.',
+    benefit: 'Rostro radiante, arrugas atenuadas y aspecto uniforme.',
+    img: facialImg,
   },
   {
-    tag: 'Protocolos',
-    title: 'Protocolos Avanzados de Reparación',
-    desc:  'Peeling químico, plasma rico en plaquetas y tratamientos para cicatrices atróficas, queloides, acné y estrías.',
-    benefit: 'Reducción de pigmentación, unificación de textura y renovación celular.',
-    img: `${base}/imagenes/servicio-reparacion.jpg`,
+    tag: 'Medicina Estética',
+    title: 'Inyectables y Reparación Celular',
+    desc:  'Tratamientos de alta precisión que actúan profundamente. Ideal para cicatrices, secuelas de acné severo y reposicionamiento facial.',
+    benefit: 'Resultados clínicos definitivos, sin cirugía excesiva.',
+    img: reparacionImg,
   },
   {
     tag: 'Corporal',
-    title: 'Armonía y Reducción Corporal',
-    desc:  'Radiofrecuencia dual, tratamientos reductores y aumento de glúteos.',
-    benefit: 'Mayor firmeza, elasticidad, efecto lifting inmediato y remodelación corporal sin tiempo de recuperación.',
-    img: `${base}/imagenes/servicio-corporal.jpg`,
+    title: 'Moldeamiento y Estética Corporal',
+    desc:  'Aparatología láser y radiofrecuencia dual para reducción de medidas, combate de celulitis y levantamiento de glúteos.',
+    benefit: 'Menos centímetros, más firmeza y contornos definidos.',
+    img: corporalImg,
   },
 ];
 ---
@@ -30,12 +34,12 @@ const services = [
 
     <!-- Header -->
     <div class="mb-14">
-      <p class="section-label" id="srv-label">Tratamientos</p>
+      <p class="section-label" id="srv-label">Servicios Especializados</p>
       <h2 class="text-4xl lg:text-5xl xl:text-6xl" style="color:#6B2F1E; font-family:var(--font-title); font-weight:700;" id="srv-title">
-        Tratamientos diseñados para tu esencia.
+        Protocolos para cambiar tu reflejo.
       </h2>
       <p class="mt-4 text-base lg:text-lg" style="color:#934829; max-width:560px;">
-        Soluciones integrales para rostro y cuerpo con resultados visibles desde la primera sesión.
+        Soluciones estético-médicas para moldear tu cuerpo y armonizar tus facciones, avalados por la ciencia.
       </p>
     </div>
 
@@ -45,7 +49,7 @@ const services = [
         <div class="service-card group flex flex-col transition-colors duration-500 overflow-hidden" style="background:#F0E0C7;">
           <!-- Image with tag -->
           <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
-            <img
+            <Image
               src={s.img}
               alt={s.title}
               class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"

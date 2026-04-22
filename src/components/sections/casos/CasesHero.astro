@@ -1,0 +1,20 @@
+---
+// CasesHero.astro
+---
+<section class="py-24 text-center mt-8">
+  <div class="max-w-4xl mx-auto px-6">
+    <p class="text-sm tracking-widest uppercase mb-4" style="color:#AF7127;">Casos de Éxito</p>
+    <h1 class="text-4xl md:text-5xl lg:text-7xl mb-6 tracking-widest uppercase" style="color:#6B2F1E; font-family:'Cormorant Garamond',serif; font-weight:700;">
+      Resultados que Hablan por Sí Mismos
+    </h1>
+    <p class="text-lg md:text-xl font-light max-w-2xl mx-auto" style="color:#934829;">
+      Historias reales, pieles reales. Descubre cómo nuestros pacientes han recuperado su confianza y la salud de su piel con protocolos dedicados en GO Essence.
+    </p>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  gsap.from('h1', { y: 20, opacity: 0, duration: 1, ease: 'power2.out' });
+  gsap.from('p', { y: 20, opacity: 0, duration: 1, ease: 'power2.out', delay: 0.2 });
+</script>
