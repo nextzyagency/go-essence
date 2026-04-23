@@ -90,12 +90,12 @@ const { service } = Astro.props;
 
   // Hero animation
   gsap.from('.srv-hero > *', {
-    y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: 'power2.out', delay: 0.2
+    y: 30, duration: 1, stagger: 0.15, ease: 'power2.out', delay: 0.2
   });
 
   // Content animation
   gsap.from('.srv-content > div', {
     scrollTrigger: { trigger: '.srv-content', start: 'top 80%' },
-    y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: 'power3.out'
+    y: 30, duration: 1, stagger: 0.2, ease: 'power3.out'
   });
 </script>

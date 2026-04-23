@@ -59,12 +59,12 @@ const instagramPosts = [
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.from('#test-label, #test-title', {
-    y: 22, opacity: 0, duration: 1, stagger: 0.12, ease: 'power3.out',
+    y: 22, duration: 1, stagger: 0.12, ease: 'power3.out',
     scrollTrigger: { trigger: '#testimonios', start: 'top 75%' },
   });
 
   gsap.from('.testimonial-card', {
-    y: 30, opacity: 0, duration: 0.9, stagger: 0.18, ease: 'power3.out',
+    y: 30, duration: 0.9, stagger: 0.18, ease: 'power3.out',
     scrollTrigger: { trigger: '#testimonios', start: 'top 65%' },
   });
 

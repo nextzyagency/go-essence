@@ -98,12 +98,12 @@ const services = [
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.from('#srv-label, #srv-title', {
-    y: 22, opacity: 0, duration: 1, stagger: 0.12, ease: 'power3.out',
+    y: 22, duration: 1, stagger: 0.12, ease: 'power3.out',
     scrollTrigger: { trigger: '#servicios', start: 'top 75%' },
   });
 
   gsap.from('.service-card', {
-    y: 30, opacity: 0, duration: 0.9, stagger: 0.18, ease: 'power3.out',
+    y: 30, duration: 0.9, stagger: 0.18, ease: 'power3.out',
     scrollTrigger: { trigger: '#servicios', start: 'top 65%' },
   });
 </script>
