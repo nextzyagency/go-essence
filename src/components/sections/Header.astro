@@ -42,7 +42,9 @@ const navItems = [
     </nav>
 
     <!-- CTA Button -->
-    <a href="/contacto" class="btn-primary hidden lg:inline-block text-xs"
+    <a href="/contacto" class="btn-primary text-xs hidden lg:inline-block"
+      style="display:none;"
+      id="header-cta"
       >Agendar valoración</a
     >
 
@@ -75,9 +77,6 @@ const navItems = [
         </a>
       ))
     }
-    <a href="/contacto" class="btn-primary text-center text-xs mt-2"
-      >Agendar valoración</a
-    >
   </div>
 </header>
 
@@ -85,6 +84,15 @@ const navItems = [
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
+
+  // Show CTA button only on lg+ (>=1024px)
+  const ctaBtn = document.getElementById("header-cta") as HTMLElement | null;
+  function updateCtaVisibility() {
+    if (!ctaBtn) return;
+    ctaBtn.style.display = window.innerWidth >= 1024 ? "inline-block" : "none";
+  }
+  updateCtaVisibility();
+  window.addEventListener("resize", updateCtaVisibility);
 
   const header = document.getElementById("site-header");
   let lastY = 0;
