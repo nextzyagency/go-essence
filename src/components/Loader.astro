@@ -1,0 +1,123 @@
+---
+// Loader.astro — pantalla de carga inicial (solo en la primera carga, no en navegaciones del ClientRouter)
+---
+<div id="ge-loader" aria-hidden="true">
+  <svg class="ge-lotus" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse class="ge-petal ge-p1" pathLength="1" cx="100" cy="115" rx="34" ry="58" />
+    <ellipse class="ge-petal ge-p2" pathLength="1" cx="72" cy="122" rx="26" ry="48" transform="rotate(-32 72 122)" />
+    <ellipse class="ge-petal ge-p3" pathLength="1" cx="128" cy="122" rx="26" ry="48" transform="rotate(32 128 122)" />
+  </svg>
+  <span class="ge-line"></span>
+</div>
+
+<noscript><style>#ge-loader { display: none; }</style></noscript>
+
+<style is:global>
+  #ge-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    background: #F0E0C7;
+    transition: clip-path 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+    clip-path: inset(0 0 0 0);
+  }
+  #ge-loader.ge-done {
+    clip-path: inset(0 0 100% 0);
+    pointer-events: none;
+  }
+
+  .ge-lotus {
+    width: 72px;
+    height: 72px;
+    animation: ge-breathe 2.4s ease-in-out infinite;
+    transition: transform 0.6s ease, opacity 0.5s ease;
+  }
+  #ge-loader.ge-done .ge-lotus {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+
+  .ge-petal {
+    stroke: #AF7127;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: ge-draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+  .ge-p1 { stroke: #934829; }
+  .ge-p2 { animation-delay: 0.25s; }
+  .ge-p3 { animation-delay: 0.4s; }
+
+  .ge-line {
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: #9B7A73;
+    opacity: 0.4;
+    transform-origin: left;
+    animation: ge-progress 1.4s ease-in-out infinite;
+  }
+  #ge-loader.ge-done .ge-line { opacity: 0; transition: opacity 0.3s ease; }
+
+  @keyframes ge-draw { to { stroke-dashoffset: 0; } }
+  @keyframes ge-breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+  @keyframes ge-progress {
+    0% { transform: scaleX(0); transform-origin: left; }
+    50% { transform: scaleX(1); transform-origin: left; }
+    50.01% { transform-origin: right; }
+    100% { transform: scaleX(0); transform-origin: right; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ge-lotus, .ge-line { animation: none; }
+    .ge-petal { animation: none; stroke-dashoffset: 0; }
+    #ge-loader { transition: opacity 0.3s ease; }
+    #ge-loader.ge-done { clip-path: inset(0 0 0 0); opacity: 0; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var loader = document.getElementById('ge-loader');
+    if (!loader || window.__geLoaderShown) {
+      if (loader) loader.remove();
+      return;
+    }
+    window.__geLoaderShown = true;
+    document.documentElement.classList.add('ge-loading');
+
+    var start = Date.now();
+    var MIN = 900; // deja que el loto termine de dibujarse
+    var finished = false;
+
+    function finish() {
+      if (finished) return;
+      finished = true;
+      setTimeout(function () {
+        loader.classList.add('ge-done');
+        document.documentElement.classList.remove('ge-loading');
+        window.dispatchEvent(new Event('ge:loaded'));
+        setTimeout(function () { loader.remove(); }, 1000);
+      }, Math.max(0, MIN - (Date.now() - start)));
+    }
+
+    if (document.readyState === 'complete') finish();
+    else window.addEventListener('load', finish);
+    setTimeout(finish, 5000); // por si algún recurso se queda colgado
+
+    // Navegaciones del ClientRouter: el nuevo body trae otro loader, se elimina antes de pintarse
+    document.addEventListener('astro:after-swap', function () {
+      var l = document.getElementById('ge-loader');
+      if (l) l.remove();
+    });
+  })();
+</script>

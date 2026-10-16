@@ -54,15 +54,24 @@ const optimizedHero = await getImage({ src: heroImgSrc, width: 1920, format: 'we
   const sub = document.getElementById('hero-sub');
   const btn = document.getElementById('hero-btn');
 
-  // Background zoom-out
-  gsap.from(bg, { scale: 1.08, duration: 3, ease: 'sine.out', delay: 0.2 });
+  function playIntro() {
+    // Background zoom-out
+    gsap.from(bg, { scale: 1.08, duration: 3, ease: 'sine.out', delay: 0.2 });
 
-  // Text entrance
-  gsap.from([label, title, sub, btn], {
-    y: 30,
-    duration: 1.2,
-    stagger: 0.18,
-    ease: 'power3.out',
-    delay: 0.3,
-  });
+    // Text entrance
+    gsap.from([label, title, sub, btn], {
+      y: 30,
+      duration: 1.2,
+      stagger: 0.18,
+      ease: 'power3.out',
+      delay: 0.3,
+    });
+  }
+
+  // Espera a que la pantalla de carga se retire
+  if (document.documentElement.classList.contains('ge-loading')) {
+    window.addEventListener('ge:loaded', playIntro, { once: true });
+  } else {
+    playIntro();
+  }
 </script>

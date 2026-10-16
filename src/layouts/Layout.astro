@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
+import Loader from '../components/Loader.astro';
 
 export interface Props {
   title?: string;
@@ -49,6 +50,7 @@ const {
     <ClientRouter />
   </head>
   <body>
+    <Loader />
     <slot />
   </body>
 </html>
