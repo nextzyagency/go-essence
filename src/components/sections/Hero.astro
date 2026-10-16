@@ -3,7 +3,7 @@
 import { getImage } from 'astro:assets';
 import heroImgSrc from '../../assets/imagenes/home/hero.JPG';
 
-const optimizedHero = await getImage({ src: heroImgSrc, format: 'webp' });
+const optimizedHero = await getImage({ src: heroImgSrc, width: 1920, format: 'webp', quality: 75 });
 ---
 <section id="inicio" class="relative w-full h-screen flex items-end overflow-hidden">
   <!-- Background image -->
