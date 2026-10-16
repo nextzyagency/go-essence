@@ -1,10 +1,10 @@
 ---
 // CasesList.astro
-const instagramPosts = [
-  "https://www.instagram.com/p/DW1mhcOERJQ/embed",
-  "https://www.instagram.com/p/DWzEnbUkXzu/embed",
-  "https://www.instagram.com/p/DWJ6s07AO7T/embed"
-];
+import ReelCard from '../../ReelCard.astro';
+import { getLatestReels, getFallbackEmbeds } from '../../../data/instagram.js';
+
+const reels = getLatestReels(3);
+const fallbackEmbeds = reels.length ? [] : getFallbackEmbeds('light');
 ---
 <section class="py-24 bg-[#F0E0C7]">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
@@ -12,7 +12,12 @@ const instagramPosts = [
       Testimonios y Tratamientos
     </h2>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 case-list">
-      {instagramPosts.map((url, i) => (
+      {reels.map((reel) => (
+        <div class="hover:-translate-y-2 transition-transform duration-300">
+          <ReelCard reel={reel} theme="light" />
+        </div>
+      ))}
+      {fallbackEmbeds.map((url, i) => (
         <div class="bg-white p-4 shadow-sm border border-[#DFCEC1] flex justify-center hover:-translate-y-2 transition-transform duration-300">
           <iframe 
             src={url} 

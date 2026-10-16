@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# reels de Instagram descargados en build (scripts/fetch-instagram.mjs)
+public/instagram/
+src/data/instagram-reels.json

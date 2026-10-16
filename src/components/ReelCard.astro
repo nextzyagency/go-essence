@@ -1,0 +1,238 @@
+---
+// ReelCard.astro — reproductor propio para los reels de Instagram (sin el marco del embed)
+export interface Props {
+  reel: { code: string; url: string; caption: string; likes: number; comments: number; video: string; poster: string };
+  theme?: 'dark' | 'light';
+  class?: string;
+}
+
+const { reel, theme = 'light', class: className = '' } = Astro.props;
+const fmt = (n: number) => new Intl.NumberFormat('es-CO', { notation: 'compact' }).format(n);
+---
+<article class:list={['reel-card', `reel-${theme}`, className]}>
+  <div class="reel-media">
+    <video
+      src={reel.video}
+      poster={reel.poster}
+      preload="none"
+      playsinline
+      loop
+      aria-label={reel.caption || 'Video de GO Essence'}
+    ></video>
+
+    <button class="reel-play" type="button" aria-label="Reproducir video">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>
+    </button>
+
+    <button class="reel-mute" type="button" aria-label="Silenciar">
+      <svg class="icon-sound" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+      <svg class="icon-muted" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5m0-5-5 5"/></svg>
+    </button>
+
+    <a class="reel-ig" href={reel.url} target="_blank" rel="noopener" aria-label="Ver en Instagram">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg>
+    </a>
+
+    <div class="reel-info">
+      {reel.caption && <p class="reel-caption">{reel.caption}</p>}
+      <div class="reel-meta">
+        <span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+          {fmt(reel.likes)}
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg>
+          {fmt(reel.comments)}
+        </span>
+        <span class="reel-handle">@go.essence_</span>
+      </div>
+    </div>
+
+    <div class="reel-progress"><span></span></div>
+  </div>
+</article>
+
+<style is:global>
+  .reel-card {
+    width: 100%;
+    max-width: 380px;
+    margin-inline: auto;
+    padding: 10px;
+  }
+  .reel-dark { border: 1px solid rgba(240, 224, 199, 0.2); }
+  .reel-light { background: #fff; border: 1px solid #DFCEC1; }
+
+  .reel-media {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    background: #6B2F1E;
+    cursor: pointer;
+  }
+  .reel-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reel-card:hover .reel-media video { transform: scale(1.03); }
+  .reel-card.is-playing .reel-media video { transform: none; }
+
+  /* Degradado para legibilidad del texto */
+  .reel-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(60, 24, 14, 0.85) 0%, rgba(60, 24, 14, 0.15) 40%, transparent 60%);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .reel-card.is-playing .reel-media::after { opacity: 0; }
+
+  .reel-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 68px;
+    height: 68px;
+    display: grid;
+    place-items: center;
+    color: #F0E0C7;
+    border: 1px solid rgba(240, 224, 199, 0.7);
+    background: rgba(107, 47, 30, 0.25);
+    backdrop-filter: blur(6px);
+    transform: translate(-50%, -50%);
+    transition: transform 0.4s ease, opacity 0.3s ease, background 0.3s ease;
+  }
+  .reel-play svg { margin-left: 3px; }
+  .reel-card:hover .reel-play { transform: translate(-50%, -50%) scale(1.08); background: rgba(175, 113, 39, 0.45); }
+  .reel-card.is-playing .reel-play { opacity: 0; transform: translate(-50%, -50%) scale(0.85); pointer-events: none; }
+
+  .reel-ig,
+  .reel-mute {
+    position: absolute;
+    top: 12px;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    color: #F0E0C7;
+    background: rgba(60, 24, 14, 0.35);
+    backdrop-filter: blur(6px);
+    transition: background 0.3s ease, opacity 0.3s ease;
+  }
+  .reel-ig { right: 12px; }
+  .reel-mute { left: 12px; opacity: 0; pointer-events: none; }
+  .reel-ig:hover, .reel-mute:hover { background: rgba(175, 113, 39, 0.7); }
+  .reel-card.is-playing .reel-mute { opacity: 1; pointer-events: auto; }
+  .reel-mute .icon-muted, .reel-card.is-muted .reel-mute .icon-sound { display: none; }
+  .reel-card.is-muted .reel-mute .icon-muted { display: block; }
+
+  .reel-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 18px 18px 20px;
+    color: #F0E0C7;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .reel-card.is-playing .reel-info { opacity: 0; transform: translateY(8px); }
+  .reel-caption {
+    font-size: 0.875rem;
+    line-height: 1.45;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .reel-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.75rem;
+    opacity: 0.85;
+  }
+  .reel-meta span { display: inline-flex; align-items: center; gap: 5px; }
+  .reel-handle { margin-left: auto; letter-spacing: 0.04em; }
+
+  .reel-progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    height: 2px;
+    background: rgba(240, 224, 199, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .reel-card.is-playing .reel-progress { opacity: 1; }
+  .reel-progress span {
+    display: block;
+    height: 100%;
+    background: #AF7127;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+</style>
+
+<script>
+  // Delegación en document: funciona también tras navegaciones del ClientRouter
+  function pauseAll(except?: HTMLVideoElement) {
+    document.querySelectorAll<HTMLVideoElement>('.reel-card video').forEach((v) => {
+      if (v !== except && !v.paused) v.pause();
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const card = target.closest<HTMLElement>('.reel-card');
+    if (!card || target.closest('.reel-ig')) return;
+    const video = card.querySelector('video')!;
+
+    if (target.closest('.reel-mute')) {
+      video.muted = !video.muted;
+      card.classList.toggle('is-muted', video.muted);
+      return;
+    }
+    if (video.paused) {
+      pauseAll(video);
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+
+  // Los eventos de media no burbujean: se escuchan en captura
+  document.addEventListener('play', (e) => {
+    const v = e.target as HTMLElement;
+    v.closest('.reel-card')?.classList.add('is-playing');
+  }, true);
+  document.addEventListener('pause', (e) => {
+    const v = e.target as HTMLElement;
+    v.closest('.reel-card')?.classList.remove('is-playing');
+  }, true);
+  document.addEventListener('timeupdate', (e) => {
+    const v = e.target as HTMLVideoElement;
+    const bar = v.closest('.reel-card')?.querySelector<HTMLElement>('.reel-progress span');
+    if (bar && v.duration) bar.style.transform = `scaleX(${v.currentTime / v.duration})`;
+  }, true);
+
+  // Pausa los videos que salen de pantalla
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      const v = en.target as HTMLVideoElement;
+      if (!en.isIntersecting && !v.paused) v.pause();
+    });
+  }, { threshold: 0.25 });
+  const observeAll = () => document.querySelectorAll('.reel-card video').forEach((v) => observer.observe(v));
+  document.addEventListener('astro:page-load', observeAll);
+  document.addEventListener('astro:before-swap', () => pauseAll());
+</script>

@@ -1,8 +1,10 @@
 ---
 // Testimonials.astro
-import { getLatestReelEmbeds } from '../../data/instagram.js';
+import ReelCard from '../ReelCard.astro';
+import { getLatestReels, getFallbackEmbeds } from '../../data/instagram.js';
 
-const instagramPosts = await getLatestReelEmbeds(3);
+const reels = getLatestReels(3);
+const fallbackEmbeds = reels.length ? [] : getFallbackEmbeds('dark');
 ---
 <section id="testimonios" class="section-pad overflow-hidden" style="background:#6B2F1E;">
   <div class="max-w-7xl mx-auto">
@@ -32,7 +34,10 @@ const instagramPosts = await getLatestReelEmbeds(3);
 
     <!-- Testimonial cards track -->
     <div id="test-track" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {instagramPosts.map((url, i) => (
+      {reels.map((reel) => (
+        <ReelCard reel={reel} theme="dark" class="testimonial-card" />
+      ))}
+      {fallbackEmbeds.map((url, i) => (
         <div class="testimonial-card flex justify-center w-full" style="border: 1px solid rgba(240,224,199,0.2); padding: 1rem;">
           <iframe 
             src={url} 

@@ -6,8 +6,8 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "node scripts/fetch-instagram.mjs && astro dev",
+    "build": "node scripts/fetch-instagram.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
