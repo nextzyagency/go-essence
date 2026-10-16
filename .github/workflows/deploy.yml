@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "0 11 * * *" # diario, 6:00 a.m. Colombia: trae los últimos reels de Instagram
 
 permissions:
   contents: read
@@ -34,6 +36,8 @@ jobs:
 
       - name: Build with Astro
         run: npm run build
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

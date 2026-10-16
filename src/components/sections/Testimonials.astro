@@ -1,10 +1,8 @@
 ---
 // Testimonials.astro
-const instagramPosts = [
-  "https://www.instagram.com/p/DW1mhcOERJQ/embed/?theme=dark",
-  "https://www.instagram.com/p/DWzEnbUkXzu/embed/?theme=dark",
-  "https://www.instagram.com/p/DWJ6s07AO7T/embed/?theme=dark"
-];
+import { getLatestReelEmbeds } from '../../data/instagram.js';
+
+const instagramPosts = await getLatestReelEmbeds(3);
 ---
 <section id="testimonios" class="section-pad overflow-hidden" style="background:#6B2F1E;">
   <div class="max-w-7xl mx-auto">
